@@ -30,9 +30,10 @@ To run this project, ensure the following software is installed on your system:
 
 ### 1. Clone the Repository
 
-````bash
+```bash
 git clone <repository_url>
 cd school_management
+```
 
 ### 2. Install Dependencies
 
@@ -40,6 +41,7 @@ Run the following command to install all required dependencies:
 
 ```bash
 npm install
+```
 
 ### 3. Environment Variables
 
@@ -58,6 +60,7 @@ Start the server using the following command:
 
 ```bash
 node app.js
+```
 
 ### API Usage
 
@@ -65,18 +68,18 @@ node app.js
 
 Login to generate a token:
 
-* **Endpoint:** POST /auth/login
-* **Body:**
+- **Endpoint:** POST /auth/login
+- **Body:**
 
 ```json
 {
   "username": "admin",
   "password": "password123"
 }
+```
 
 Use the token in the Authorization header as Bearer <token> for all protected routes.
 
 ### CRUD Operations
 
 Refer to the **Documentation** for detailed API specifications, request/response formats, and example requests.
-````
