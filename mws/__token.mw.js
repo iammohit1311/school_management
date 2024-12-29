@@ -1,21 +1,23 @@
-module.exports = ({ meta, config, managers }) =>{
-    return ({req, res, next})=>{
-        if(!req.headers.token){
-            console.log('token required but not found')
-            return managers.responseDispatcher.dispatch(res, {ok: false, code:401, errors: 'unauthorized'});
-        }
-        let decoded = null
+// __token.mw.js
+const jwt = require('jsonwebtoken');
+
+module.exports = (allowedRoles) => {
+    return (req, res, next) => {
+        const token = req.headers.authorization?.split(' ')[1];
+        if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
         try {
-            decoded = managers.token.verifyShortToken({token: req.headers.token});
-            if(!decoded){
-                console.log('failed to decode-1')
-                return managers.responseDispatcher.dispatch(res, {ok: false, code:401, errors: 'unauthorized'});
-            };
-        } catch(err){
-            console.log('failed to decode-2')
-            return managers.responseDispatcher.dispatch(res, {ok: false, code:401, errors: 'unauthorized'});
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded;
+
+            // Check if user role matches any of the allowed roles
+            if (!allowedRoles.includes(decoded.role)) {
+                return res.status(403).json({ error: 'Forbidden' });
+            }
+
+            next();
+        } catch (err) {
+            res.status(401).json({ error: 'Invalid token' });
         }
-    
-        next(decoded);
-    }
-}
+    };
+};
