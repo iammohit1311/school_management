@@ -28,20 +28,20 @@ To run this project, ensure the following software is installed on your system:
 
 ## Setup Instructions
 
-## 1. Clone the Repository
+### 1. Clone the Repository
 
 ````bash
 git clone <repository_url>
 cd school_management
 
-## 2. Install Dependencies
+### 2. Install Dependencies
 
 Run the following command to install all required dependencies:
 
 ```bash
 npm install
 
-## 3. Environment Variables
+### 3. Environment Variables
 
 Create a `.env` file in the project root directory and define the following environment variables:
 
@@ -52,14 +52,14 @@ Replace `<username>`, `<password>`, `<cluster-url>`, and `<database-name>` with 
 
 Set `JWT_SECRET` to a secure random string.
 
-## 4. Run the Server
+### 4. Run the Server
 
 Start the server using the following command:
 
 ```bash
 node app.js
 
-## API Usage
+### API Usage
 
 **Authentication**
 
@@ -76,7 +76,7 @@ Login to generate a token:
 
 Use the token in the Authorization header as Bearer <token> for all protected routes.
 
-## CRUD Operations
+### CRUD Operations
 
 Refer to the **Documentation** for detailed API specifications, request/response formats, and example requests.
 ````
